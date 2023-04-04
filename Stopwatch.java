@@ -168,4 +168,6 @@ public class Stopwatch implements ActionListener {
         this.timeLabel.setText(hours_string + " : " + mins_string + " : " + seconds_string);
     }
 
+    // planing to add a repeat button to repeat the set time countdown.
+
 }
