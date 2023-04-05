@@ -8,6 +8,7 @@ public class Stopwatch implements ActionListener {
     JButton startButton = new JButton("Start");
     JButton resetButton = new JButton("Reset");
     JButton setTimeButton = new JButton("Set");
+    JButton repeatButton = new JButton("Repeat");
     JLabel timeLabel = new JLabel();
     JTextField jtextfield = new JTextField();
     JTextField setTimeBox = new JTextField();
@@ -19,6 +20,7 @@ public class Stopwatch implements ActionListener {
     int mins = (elapsedTime / 60000) % 60;
     int hours = (elapsedTime / 3600000);
     boolean started = false;
+    boolean isRepeating = false;
     // placeholder for hours numbers and seconds: 00 00 00
     String seconds_string = String.format("%02d", seconds);
     String mins_string = String.format("%02d", mins);
@@ -44,6 +46,15 @@ public class Stopwatch implements ActionListener {
     });
 
     public Stopwatch() {
+
+        frame.add(startButton);
+        frame.add(resetButton);
+        frame.add(timeLabel);
+        frame.add(jtextfield);
+        frame.add(setTimeBox);
+        frame.add(inputTimeLabel);
+        frame.add(setTimeButton);
+        frame.add(repeatButton);
 
         timeLabel.setText(hours_string + " : " + mins_string + " : " + seconds_string);
         timeLabel.setBounds(50, 100, 300, 100);
@@ -73,18 +84,16 @@ public class Stopwatch implements ActionListener {
         resetButton.setFocusable(false);
         resetButton.addActionListener(this); // what trigger the action to happen
 
+        repeatButton.setBounds(400, 10, 100, 50);
+        repeatButton.setFont(new Font("Ink Free", Font.PLAIN, 25));
+        repeatButton.setFocusable(false);
+        repeatButton.addActionListener(this); // what trigger the action to happen
+        repeatButton.setOpaque(true);
+
         setTimeButton.setBounds(300, 10, 100, 50);
         setTimeButton.setFont(new Font("Ink Free", Font.PLAIN, 25));
         setTimeButton.setFocusable(false);
         setTimeButton.addActionListener(this); // what trigger the action to happen
-
-        frame.add(startButton);
-        frame.add(resetButton);
-        frame.add(timeLabel);
-        frame.add(jtextfield);
-        frame.add(setTimeBox);
-        frame.add(inputTimeLabel);
-        frame.add(setTimeButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 800);
@@ -136,6 +145,22 @@ public class Stopwatch implements ActionListener {
                 String mins_string = String.format("%02d", mins);
                 String hours_string = String.format("%02d", hours);
                 timeLabel.setText(hours_string + " : " + mins_string + " : " + seconds_string);
+            }
+        } else if (e.getSource() == repeatButton) { // when times runs out, it will re-run the set time again
+            if (isRepeating == false) {
+                isRepeating = true;
+                repeatButton.setBackground(Color.green);
+                while (isRepeating == true) {
+                    if (elapsedTime == 0) {
+                        start();
+                    }
+                }
+            } else {
+                isRepeating = false;
+                repeatButton.setBackground(UIManager.getColor("Button.background"));
+                // if (elapsedTime == 0) {
+                // stop();
+                // }
             }
         }
 
