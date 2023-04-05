@@ -29,18 +29,16 @@ public class Stopwatch implements ActionListener {
     Timer timer = new Timer(1000, e -> {
         // TODO Auto-generated method stub
         System.out.println(elapsedTime);
-        if (this.elapsedTime <= 0) {
+        if (this.elapsedTime > 0) {
+            perfromCountingDown();
+        }
+
+        else if (this.elapsedTime == 0 && isRepeating) {
+            setTime(Integer.parseInt(setTimeBox.getText()));
+            perfromCountingDown();
+        } else if (this.elapsedTime <= 0 && !isRepeating) {
             stop();
             Toolkit.getDefaultToolkit().beep();
-        } else {
-            elapsedTime -= 1000;
-            hours = (elapsedTime / 3600000);
-            mins = (elapsedTime / 60000) % 60;
-            seconds = (elapsedTime / 1000) % 60;
-            String seconds_string = String.format("%02d", seconds);
-            String mins_string = String.format("%02d", mins);
-            String hours_string = String.format("%02d", hours);
-            timeLabel.setText(hours_string + " : " + mins_string + " : " + seconds_string);
         }
 
     });
@@ -150,17 +148,10 @@ public class Stopwatch implements ActionListener {
             if (isRepeating == false) {
                 isRepeating = true;
                 repeatButton.setBackground(Color.green);
-                while (isRepeating == true) {
-                    if (elapsedTime == 0) {
-                        start();
-                    }
-                }
+
             } else {
                 isRepeating = false;
                 repeatButton.setBackground(UIManager.getColor("Button.background"));
-                // if (elapsedTime == 0) {
-                // stop();
-                // }
             }
         }
 
@@ -193,6 +184,15 @@ public class Stopwatch implements ActionListener {
         this.timeLabel.setText(hours_string + " : " + mins_string + " : " + seconds_string);
     }
 
-    // planing to add a repeat button to repeat the set time countdown.
+    public void perfromCountingDown() {
+        elapsedTime -= 1000;
+        hours = (elapsedTime / 3600000);
+        mins = (elapsedTime / 60000) % 60;
+        seconds = (elapsedTime / 1000) % 60;
+        String seconds_string = String.format("%02d", seconds);
+        String mins_string = String.format("%02d", mins);
+        String hours_string = String.format("%02d", hours);
+        timeLabel.setText(hours_string + " : " + mins_string + " : " + seconds_string);
+    }
 
 }
