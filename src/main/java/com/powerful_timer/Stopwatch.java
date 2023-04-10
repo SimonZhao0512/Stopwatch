@@ -5,6 +5,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 // want to intergrate REST architecture 
+// make gui has the hour and seconds option when setting time, (now can only set minutes)
+// see if i can integrate javaFX to make the syntax easier
 
 public class Stopwatch implements ActionListener {
     // static variables, JFrame, JButton, JLabel are all javax.swing classes
