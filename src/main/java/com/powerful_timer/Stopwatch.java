@@ -11,6 +11,7 @@ import javax.swing.*;
 public class Stopwatch implements ActionListener {
     // static variables, JFrame, JButton, JLabel are all javax.swing classes
     JFrame frame = new JFrame();
+
     JButton startButton = new JButton("Start");
     JButton resetButton = new JButton("Reset");
     JButton setTimeButton = new JButton("Set");
@@ -36,6 +37,7 @@ public class Stopwatch implements ActionListener {
     String mins_string = String.format("%02d", mins);
     String hours_string = String.format("%02d", hours);
 
+    // countdown
     Timer timer = new Timer(1000, e -> {
         // TODO Auto-generated method stub
         // System.out.println(elapsedTime);
@@ -193,3 +195,13 @@ public class Stopwatch implements ActionListener {
 
     // }
 }
+
+/*
+ * OBJECTIVE: adding new timer within the same instances
+ * 
+ * BIGGER PICTURE:
+ * 1. create diff timer with diff variable name and store them in a collection
+ * 2. since the timer logic is already in place, jsut need to figure out the way
+ * to tell javafx to stack them
+ * 
+ */
