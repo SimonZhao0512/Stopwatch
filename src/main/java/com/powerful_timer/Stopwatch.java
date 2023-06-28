@@ -4,24 +4,24 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-// want to intergrate REST architecture 
-// make gui has the hour and seconds option when setting time, (now can only set minutes)
-// see if i can integrate javaFX to make the syntax easier
+/*
+ * what i am trying to do now: 
+ * make a newTimerButton  DONE 
+ * make the timer buttons buiding code reuseable
+*/
 
 public class Stopwatch implements ActionListener {
     // static variables, JFrame, JButton, JLabel are all javax.swing classes
     JFrame frame = new JFrame();
+    JButton repeatButton = new JButton("Repeat");
+    JButton newTimerButton = new JButton("New Timer");
 
+    // this should be reusable
     JButton startButton = new JButton("Start");
     JButton resetButton = new JButton("Reset");
     JButton setTimeButton = new JButton("Set");
-    JButton repeatButton = new JButton("Repeat");
-    JButton newTimer = new JButton("New Timer");
-
     JLabel timeLabel = new JLabel();
-    JTextField jtextfield = new JTextField();
     JTextField setTimeBox = new JTextField();
-    JTextField setActualTime = new JTextField();
     JLabel inputTimeLabel = new JLabel();
 
     // variables
@@ -62,12 +62,11 @@ public class Stopwatch implements ActionListener {
         frame.add(startButton);
         frame.add(resetButton);
         frame.add(timeLabel);
-        frame.add(jtextfield);
         frame.add(setTimeBox);
         frame.add(inputTimeLabel);
         frame.add(setTimeButton);
         frame.add(repeatButton);
-        frame.add(newTimer);
+        frame.add(newTimerButton);
 
         timeLabel.setText(hours_string + " : " + mins_string + " : " + seconds_string);
         timeLabel.setBounds(50, 100, 300, 100);
@@ -103,11 +102,11 @@ public class Stopwatch implements ActionListener {
         repeatButton.addActionListener(this); // what trigger the action to happen
         repeatButton.setOpaque(true);
 
-        newTimer.setBounds(50, 250, 120, 50);
-        newTimer.setFont(new Font("Ink Free", Font.PLAIN, 20));
-        newTimer.setFocusable(false);
-        newTimer.addActionListener(this); // what trigger the action to happen
-        newTimer.setOpaque(true);
+        newTimerButton.setBounds(500, 10, 130, 50);
+        newTimerButton.setFont(new Font("Ink Free", Font.PLAIN, 20));
+        newTimerButton.setFocusable(false);
+        newTimerButton.addActionListener(this); // what trigger the action to happen
+        newTimerButton.setOpaque(true);
 
         setTimeButton.setBounds(300, 10, 100, 50);
         setTimeButton.setFont(new Font("Ink Free", Font.PLAIN, 25));
