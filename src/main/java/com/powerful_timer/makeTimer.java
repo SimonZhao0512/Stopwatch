@@ -10,9 +10,9 @@ import javax.swing.*;
  * make the timer buttons buiding code reuseable
 */
 
-public class Stopwatch implements ActionListener {
+public class makeTimer implements ActionListener {
     // static variables, JFrame, JButton, JLabel are all javax.swing classes
-
+    JFrame frame = new JFrame();
     JButton repeatButton = new JButton("Repeat");
     JButton newTimerButton = new JButton("New Timer");
 
@@ -23,6 +23,10 @@ public class Stopwatch implements ActionListener {
     JLabel timeLabel = new JLabel();
     JTextField setTimeBox = new JTextField();
     JLabel inputTimeLabel = new JLabel();
+
+    public void setNewTimer() {
+
+    }
 
     // variables
     int elapsedTime;
@@ -37,7 +41,7 @@ public class Stopwatch implements ActionListener {
     String mins_string = String.format("%02d", mins);
     String hours_string = String.format("%02d", hours);
 
-    // countdown
+    // what would timer do under diff condition
     Timer timer = new Timer(1000, e -> {
         // TODO Auto-generated method stub
         // System.out.println(elapsedTime);
@@ -57,16 +61,16 @@ public class Stopwatch implements ActionListener {
     });
 
     // constructor to create a new instance
-    public Stopwatch() {
+    public makeTimer() {
 
-        Main.frame.add(startButton);
-        Main.frame.add(resetButton);
-        Main.frame.add(timeLabel);
-        Main.frame.add(setTimeBox);
-        Main.frame.add(inputTimeLabel);
-        Main.frame.add(setTimeButton);
-        Main.frame.add(repeatButton);
-        Main.frame.add(newTimerButton);
+        frame.add(startButton);
+        frame.add(resetButton);
+        frame.add(timeLabel);
+        frame.add(setTimeBox);
+        frame.add(inputTimeLabel);
+        frame.add(setTimeButton);
+        frame.add(repeatButton);
+        frame.add(newTimerButton);
 
         timeLabel.setText(hours_string + " : " + mins_string + " : " + seconds_string);
         timeLabel.setBounds(50, 100, 300, 100);
@@ -113,10 +117,10 @@ public class Stopwatch implements ActionListener {
         setTimeButton.setFocusable(false);
         setTimeButton.addActionListener(this); // what trigger the action to happen
 
-        Main.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Main.frame.setSize(800, 800);
-        Main.frame.setLayout(null);
-        Main.frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 800);
+        frame.setLayout(null);
+        frame.setVisible(true);
 
     }
 
