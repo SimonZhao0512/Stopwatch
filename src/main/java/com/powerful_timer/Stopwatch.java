@@ -100,13 +100,13 @@ public class Stopwatch implements ActionListener {
         repeatButton.setFont(new Font("Ink Free", Font.PLAIN, 25));
         repeatButton.setFocusable(false);
         repeatButton.addActionListener(this); // what trigger the action to happen
-        repeatButton.setOpaque(true);
+        // repeatButton.setOpaque(true);
 
         newTimerButton.setBounds(500, 10, 130, 50);
         newTimerButton.setFont(new Font("Ink Free", Font.PLAIN, 20));
         newTimerButton.setFocusable(false);
         newTimerButton.addActionListener(this); // what trigger the action to happen
-        newTimerButton.setOpaque(true);
+        // newTimerButton.setOpaque(true);
 
         setTimeButton.setBounds(300, 10, 100, 50);
         setTimeButton.setFont(new Font("Ink Free", Font.PLAIN, 25));
@@ -118,6 +118,22 @@ public class Stopwatch implements ActionListener {
         Main.frame.setLayout(null);
         Main.frame.setVisible(true);
 
+    }
+
+    // method for making new button
+
+    public JButton makeNewButton(String buttonText, int x, int y, int width, int height,
+            String setFocusable) {
+
+        if (setFocusable == null) {
+            setFocusable = "false";
+        }
+
+        JButton button = new JButton(buttonText);
+        button.setBounds(x, y, width, height);
+        button.setFont(new Font("Ink Free", Font.PLAIN, 15));
+        button.addActionListener(this); // what trigger the action to happen
+        return button;
     }
 
     @Override
