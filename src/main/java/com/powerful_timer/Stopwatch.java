@@ -13,13 +13,14 @@ import javax.swing.*;
 public class Stopwatch implements ActionListener {
     // static variables, JFrame, JButton, JLabel are all javax.swing classes
 
-    JButton repeatButton = new JButton("Repeat");
     JButton newTimerButton = new JButton("New Timer");
 
-    // this should be reusable
-    JButton startButton = new JButton("Start");
-    JButton resetButton = new JButton("Reset");
-    JButton setTimeButton = new JButton("Set");
+    // JButton testTest = makeNewButton("test", 600, 200, 150, 50, false);
+    JButton setTimeButton = makeNewButton("Set", 300, 10, 100, 50, false);
+    JButton repeatButton = makeNewButton("Repeat", 400, 10, 100, 50, false);
+    JButton startButton = makeNewButton("Start", 50, 200, 150, 50, false);
+    JButton resetButton = makeNewButton("Reset", 220, 200, 150, 50, false);
+
     JLabel timeLabel = new JLabel();
     JTextField setTimeBox = new JTextField();
     JLabel inputTimeLabel = new JLabel();
@@ -96,10 +97,10 @@ public class Stopwatch implements ActionListener {
         resetButton.setFocusable(false);
         resetButton.addActionListener(this); // what trigger the action to happen
 
-        repeatButton.setBounds(400, 10, 100, 50);
-        repeatButton.setFont(new Font("Ink Free", Font.PLAIN, 25));
-        repeatButton.setFocusable(false);
-        repeatButton.addActionListener(this); // what trigger the action to happen
+        // repeatButton.setBounds(4 00, 10,100, 50);
+        // repeatButton.setFont(new Font("Ink Free", Font.PLAIN, 20));
+        // repeatButton.setFocusable(false);
+        // repeatButton.addActionListener(this); // what trigger the action to happen
         // repeatButton.setOpaque(true);
 
         newTimerButton.setBounds(500, 10, 130, 50);
@@ -108,10 +109,10 @@ public class Stopwatch implements ActionListener {
         newTimerButton.addActionListener(this); // what trigger the action to happen
         // newTimerButton.setOpaque(true);
 
-        setTimeButton.setBounds(300, 10, 100, 50);
-        setTimeButton.setFont(new Font("Ink Free", Font.PLAIN, 25));
-        setTimeButton.setFocusable(false);
-        setTimeButton.addActionListener(this); // what trigger the action to happen
+        // setTimeButton.setBounds(300, 10, 100, 50);
+        // setTimeButton.setFont(new Font("Ink Free", Font.PLAIN, 25));
+        // setTimeButton.setFocusable(false);
+        // setTimeButton.addActionListener(this); // what trigger the action to happen
 
         Main.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Main.frame.setSize(800, 800);
@@ -123,16 +124,14 @@ public class Stopwatch implements ActionListener {
     // method for making new button
 
     public JButton makeNewButton(String buttonText, int x, int y, int width, int height,
-            String setFocusable) {
-
-        if (setFocusable == null) {
-            setFocusable = "false";
-        }
+            boolean setFocusable) {
 
         JButton button = new JButton(buttonText);
         button.setBounds(x, y, width, height);
-        button.setFont(new Font("Ink Free", Font.PLAIN, 15));
+        button.setFont(new Font("Ink Free", Font.PLAIN, 20));
         button.addActionListener(this); // what trigger the action to happen
+        button.setOpaque(true);
+        button.setFocusable(setFocusable);
         return button;
     }
 
