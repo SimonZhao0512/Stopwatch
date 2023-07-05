@@ -87,15 +87,15 @@ public class Stopwatch implements ActionListener {
         setTimeBox.setBounds(50, 10, 100, 50);
         setTimeBox.setFont(new Font("Verdana", Font.PLAIN, 30));
 
-        startButton.setBounds(50, 200, 150, 50);
-        startButton.setFont(new Font("Ink Free", Font.PLAIN, 20));
-        startButton.setFocusable(false);
-        startButton.addActionListener(this); // what trigger the action to happen
+        // startButton.setBounds(50, 200, 150, 50);
+        // startButton.setFont(new Font("Ink Free", Font.PLAIN, 20));
+        // startButton.setFocusable(false);
+        // startButton.addActionListener(this); // what trigger the action to happen
 
-        resetButton.setBounds(220, 200, 150, 50);
-        resetButton.setFont(new Font("Ink Free", Font.PLAIN, 20));
-        resetButton.setFocusable(false);
-        resetButton.addActionListener(this); // what trigger the action to happen
+        // resetButton.setBounds(220, 200, 150, 50);
+        // resetButton.setFont(new Font("Ink Free", Font.PLAIN, 20));
+        // resetButton.setFocusable(false);
+        // resetButton.addActionListener(this); // what trigger the action to happen
 
         // repeatButton.setBounds(4 00, 10,100, 50);
         // repeatButton.setFont(new Font("Ink Free", Font.PLAIN, 20));
