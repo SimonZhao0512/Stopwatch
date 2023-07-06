@@ -13,13 +13,13 @@ import javax.swing.*;
 public class Stopwatch implements ActionListener {
     // static variables, JFrame, JButton, JLabel are all javax.swing classes
 
-    JButton newTimerButton = new JButton("New Timer");
+    // JButton newTimerButton = new JButton("New Timer");
 
     // JButton testTest = makeNewButton("test", 600, 200, 150, 50, false);
-    JButton setTimeButton = makeNewButton("Set", 300, 10, 100, 50, false);
-    JButton repeatButton = makeNewButton("Repeat", 400, 10, 100, 50, false);
-    JButton startButton = makeNewButton("Start", 50, 200, 150, 50, false);
-    JButton resetButton = makeNewButton("Reset", 220, 200, 150, 50, false);
+    JButton setTimeButton = makeNewButton("Set", 100, 50, false);
+    JButton repeatButton = makeNewButton("Repeat", 100, 50, false);
+    JButton startButton = makeNewButton("Start", 100, 50, false);
+    JButton resetButton = makeNewButton("Reset", 100, 50, false);
 
     JLabel timeLabel = new JLabel();
     JTextField setTimeBox = new JTextField();
@@ -60,14 +60,38 @@ public class Stopwatch implements ActionListener {
     // constructor to create a new instance
     public Stopwatch() {
 
-        Main.frame.add(startButton);
-        Main.frame.add(resetButton);
-        Main.frame.add(timeLabel);
-        Main.frame.add(setTimeBox);
-        Main.frame.add(inputTimeLabel);
-        Main.frame.add(setTimeButton);
-        Main.frame.add(repeatButton);
-        Main.frame.add(newTimerButton);
+        JPanel masterPanel = new JPanel(new GridLayout(3, 1, 5, 0)); // 3 rows, 1 column
+        JPanel firstRowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0)); // Horizontal gap of 10 pixe
+        JPanel secondRowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0)); // Horizontal gap of 10 pixe
+        JPanel thirdRowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0)); // Horizontal gap of 10 pixe
+
+        // add first row buttons to firstRowPanel
+        firstRowPanel.add(setTimeBox);
+        firstRowPanel.add(inputTimeLabel);
+        firstRowPanel.add(setTimeButton);
+        firstRowPanel.add(repeatButton);
+
+        masterPanel.add(firstRowPanel);
+
+        // add second row buttons to secondRowPanel
+        secondRowPanel.add(timeLabel);
+
+        masterPanel.add(secondRowPanel);
+
+        // add third row buttons to thirdRowPanel
+        thirdRowPanel.add(startButton);
+        thirdRowPanel.add(resetButton);
+
+        masterPanel.add(thirdRowPanel);
+
+        // Main.frame.add(startButton);
+        // Main.frame.add(resetButton);
+        // Main.frame.add(timeLabel);
+        // Main.frame.add(setTimeBox);
+        // Main.frame.add(inputTimeLabel);
+        // Main.frame.add(setTimeButton);
+        // Main.frame.add(repeatButton);
+        // Main.frame.add(newTimerButton);
 
         timeLabel.setText(hours_string + " : " + mins_string + " : " + seconds_string);
         timeLabel.setBounds(50, 100, 300, 100);
@@ -84,8 +108,9 @@ public class Stopwatch implements ActionListener {
         // inputTimeLabel.setHorizontalAlignment(JTextField.CENTER);
 
         setTimeBox.setText("");
-        setTimeBox.setBounds(50, 10, 100, 50);
-        setTimeBox.setFont(new Font("Verdana", Font.PLAIN, 30));
+        // setTimeBox.setBounds(50, 10, 100, 50);
+        setTimeBox.setPreferredSize(new Dimension(100, 50));
+        setTimeBox.setFont(new Font("Verdana", Font.PLAIN, 20));
 
         // startButton.setBounds(50, 200, 150, 50);
         // startButton.setFont(new Font("Ink Free", Font.PLAIN, 20));
@@ -103,10 +128,10 @@ public class Stopwatch implements ActionListener {
         // repeatButton.addActionListener(this); // what trigger the action to happen
         // repeatButton.setOpaque(true);
 
-        newTimerButton.setBounds(500, 10, 130, 50);
-        newTimerButton.setFont(new Font("Ink Free", Font.PLAIN, 20));
-        newTimerButton.setFocusable(false);
-        newTimerButton.addActionListener(this); // what trigger the action to happen
+        // newTimerButton.setBounds(500, 10, 130, 50);
+        // newTimerButton.setFont(new Font("Ink Free", Font.PLAIN, 20));
+        // newTimerButton.setFocusable(false);
+        // newTimerButton.addActionListener(this); // what trigger the action to happen
         // newTimerButton.setOpaque(true);
 
         // setTimeButton.setBounds(300, 10, 100, 50);
@@ -116,18 +141,18 @@ public class Stopwatch implements ActionListener {
 
         Main.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Main.frame.setSize(800, 800);
-        Main.frame.setLayout(null);
         Main.frame.setVisible(true);
+        Main.frame.add(masterPanel);
+        Main.frame.pack();
 
     }
 
     // method for making new button
 
-    public JButton makeNewButton(String buttonText, int x, int y, int width, int height,
-            boolean setFocusable) {
+    public JButton makeNewButton(String buttonText, int width, int height, boolean setFocusable) {
 
         JButton button = new JButton(buttonText);
-        button.setBounds(x, y, width, height);
+        button.setPreferredSize(new Dimension(width, height));
         button.setFont(new Font("Ink Free", Font.PLAIN, 20));
         button.addActionListener(this); // what trigger the action to happen
         button.setOpaque(true);
