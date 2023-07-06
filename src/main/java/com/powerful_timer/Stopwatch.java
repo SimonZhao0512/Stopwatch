@@ -10,7 +10,7 @@ import javax.swing.*;
  * make the timer buttons buiding code reuseable
 */
 
-public class Stopwatch implements ActionListener {
+public class Stopwatch extends JComponent implements ActionListener {
     // static variables, JFrame, JButton, JLabel are all javax.swing classes
 
     // JButton newTimerButton = new JButton("New Timer");
@@ -60,29 +60,38 @@ public class Stopwatch implements ActionListener {
     // constructor to create a new instance
     public Stopwatch() {
 
-        JPanel masterPanel = new JPanel(new GridLayout(3, 1, 5, 0)); // 3 rows, 1 column
-        JPanel firstRowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0)); // Horizontal gap of 10 pixe
-        JPanel secondRowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0)); // Horizontal gap of 10 pixe
-        JPanel thirdRowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0)); // Horizontal gap of 10 pixe
+        JPanel masterPanel = new JPanel(new GridBagLayout());
+        masterPanel.setBackground(Color.lightGray);
+        masterPanel.setPreferredSize(new Dimension(400, 300));
+        // Create GridBagConstraints
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(2, 2, 2, 2); // Set vertical gap between rows
 
-        // add first row buttons to firstRowPanel
+        gbc.gridy = 0; // Row 0
+        JPanel firstRowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0)); // Horizontal gap of 10 pixe
+        // add the first row buttons
         firstRowPanel.add(setTimeBox);
         firstRowPanel.add(inputTimeLabel);
         firstRowPanel.add(setTimeButton);
         firstRowPanel.add(repeatButton);
 
-        masterPanel.add(firstRowPanel);
+        masterPanel.add(firstRowPanel, gbc);
 
-        // add second row buttons to secondRowPanel
+        gbc.gridy = 1; // Row 1
+        JPanel secondRowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0)); // Horizontal gap of 10 pixe
+        // add the second row buttons
         secondRowPanel.add(timeLabel);
 
-        masterPanel.add(secondRowPanel);
+        masterPanel.add(secondRowPanel, gbc);
 
+        gbc.gridy = 2; // Row 2
+        JPanel thirdRowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0)); // Horizontal gap of 10 pixe
         // add third row buttons to thirdRowPanel
         thirdRowPanel.add(startButton);
         thirdRowPanel.add(resetButton);
 
-        masterPanel.add(thirdRowPanel);
+        masterPanel.add(thirdRowPanel, gbc);
 
         // Main.frame.add(startButton);
         // Main.frame.add(resetButton);
@@ -139,11 +148,7 @@ public class Stopwatch implements ActionListener {
         // setTimeButton.setFocusable(false);
         // setTimeButton.addActionListener(this); // what trigger the action to happen
 
-        Main.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Main.frame.setSize(800, 800);
-        Main.frame.setVisible(true);
         Main.frame.add(masterPanel);
-        Main.frame.pack();
 
     }
 
